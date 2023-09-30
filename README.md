@@ -1,2 +1,3 @@
 # LOSEC
-Local Search Engine in C++
+
+This project is the final project of CSCI200 in Mines.
