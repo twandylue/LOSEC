@@ -1,10 +1,70 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{hyperref}
+\usepackage{pgf-umlcd}
 \begin{document}
 
 \section*{Project Proposal}
 
-% TODO:
+\subsection*{Title}
+
+Local Search Engine
+
+\subsection*{Problem Descripton}
+
+I will be creating an local search engine for text file. Users are able to input the keywords in file content and this local search engine will provide most related file name. 
+TF-IDF(Term Frequency Inverse Document Frequency of records) will be used as searching algorithm. The idexing result of files will be stored as a \textit{index.json} in local computer, which means
+this local search engine works without internet.
+
+\subsection*{Data Descripton}
+
+\subsubsection*{The UML class diagrams}
+
+\begin{tikzpicture}% [ show background grid ]
+  \begin{class}[ text width =11 cm ]{ Lexer }{0 , 0}
+    \attribute{- content : string}
+    \operation{+ nextToken() : string}
+    \operation{+ hasNext() : bool}
+  \end{class}
+
+  \begin{class}[ text width =11 cm ]{ Reader }{0 , -2.5}
+    \operation{+ readText(string) : string}
+  \end{class}
+
+  \begin{class}[ text width =11 cm ]{ IndexModel }{0 , -4.5}
+    \attribute{- docs : hashmap$<$string, Doc$>$}
+    \attribute{- df : hashmap$<$string, int$>$}
+    \operation{+ addDocument(string, string) : void}
+    \operation{+ removeDocument(string) : void}
+    \operation{+ search(string) : vector$<$(string, float)$>$}
+  \end{class}
+
+  \begin{class}[ text width =11 cm ]{ Doc }{0 , -8}
+    \attribute{- tf : hashmap$<$string, int$>$}
+    \attribute{- totalToken : int}
+  \end{class}
+\end {tikzpicture}
+
+\subsubsection*{Data structure}
+
+I will use \textbf{vector} and \textbf{hashmap} to store Model in my program. Different Model would be stored in vector, and basic information, such as file content and indexing score, would be stored in hashmap.
+
+\subsubsection*{File I/O}
+
+I will store the indexing result as an external file named \textbf{index.json}, and the score in the \textbf{index.json} will be used to find the most related file according user input.
+
+\subsubsection*{Procedural description}
+
+Model model = Model(); \\
+Reader reader = Reader(); \\
+string content = reader.readFromFile(path); \\
+model.addDocument(content); \\
+file::save(model); \\
+result = model.search(input); \\
+print(result);
+
+\subsubsection*{SPECIAL NEEDS/CONCERNS}
+
+No.
 
 \end{document}
