@@ -2,7 +2,7 @@
 # the below example
 
 TARGET = losec
-SRC_FILES = main.cpp
+SRC_FILES = main.cpp reader.cpp
 
 # NO EDITS NEEDED BELOW THIS LINE
 
@@ -42,3 +42,5 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
+main.o: main.cpp reader.h
+reader.o: reader.cpp reader.h
