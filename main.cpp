@@ -1,3 +1,4 @@
+#include "lexer.h"
 #include "reader.h"
 
 #include <filesystem>
@@ -14,7 +15,12 @@ int main(void) {
       if (entry.path().extension() == ".txt") {
         cout << "File name: " << entry.path() << endl;
         string s = r->readText(entry.path());
-        cout << s << endl;
+        Lexer *l = new Lexer(s);
+        while (l->hasNext()) {
+          std::cout << "word: " << l->next() << std::endl;
+          std::cout << "--------------" << std::endl;
+        }
+        delete l;
       }
     }
   } catch (std::invalid_argument &e) {
