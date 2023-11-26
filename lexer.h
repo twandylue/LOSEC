@@ -7,15 +7,12 @@ class Lexer {
 public:
   Lexer(std::string content);
   std::string nextToken();
-  bool hasNext() const;
 
 private:
-  void trimLeft(std::string &s);
-  void trimRight(std::string &s);
-  std::string peek() const;
+  void trimLeft();
+  std::string chop(size_t n);
+  std::string chopWhile(int (*predicate)(int));
   std::string _content;
-  size_t _index;
-  size_t _length;
 };
 
 #endif // end of LEXER

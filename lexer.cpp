@@ -1,48 +1,53 @@
 #include "lexer.h"
+#include "string_functions.h"
 
+#include <cctype>
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-Lexer::Lexer(string content) {
-  this->trimLeft(content);
-  this->trimRight(content);
-  this->_content = content;
-  this->_index = 0;
-  this->_length = content.length();
+Lexer::Lexer(string content) { this->_content = content; }
+
+string Lexer::chop(size_t n) {
+  string token = this->_content.substr(0, n);
+  this->_content = this->_content.substr(n, this->_content.length() - n);
+
+  return token;
 }
 
-bool Lexer::hasNext() const { return this->_index < this->_length; }
-
-string Lexer::peek() const {
-  size_t i = this->_index;
-  while (i < this->_length && !isspace(this->_content[i])) {
-    i++;
+string Lexer::chopWhile(int (*predicate)(int)) {
+  size_t i = 0;
+  while (i < this->_content.length() && predicate(this->_content[i]) > 0) {
+    i += 1;
   }
-  return this->_content.substr(this->_index, i - this->_index);
+
+  return string_to_upper(this->chop(i));
 }
 
 string Lexer::nextToken() {
-  while (this->_index < this->_length &&
-         isspace(this->_content[this->_index])) {
-    this->_index += 1;
+  this->trimLeft();
+
+  if (this->_content.length() == 0) {
+    return "";
   }
-  string s = this->peek();
-  this->_index += s.length();
-  return s;
+
+  if (isdigit(this->_content[0])) {
+    return this->chopWhile(isdigit);
+  }
+
+  if (isalnum(this->_content[0])) {
+    return this->chopWhile(isalnum);
+  }
+
+  return this->chop(1);
 }
 
-void Lexer::trimRight(string &s) {
-  while (s.length() > 0 && isspace(s[s.length() - 1])) {
-    s.pop_back();
-  }
-}
-
-void Lexer::trimLeft(string &s) {
+void Lexer::trimLeft() {
   size_t i = 0;
-  while (i < s.length() && isspace(s[i])) {
-    i++;
+  while (i < this->_content.length() && isspace(this->_content[i])) {
+    i += 1;
   }
-  s = s.substr(i);
+
+  this->_content = this->_content.substr(i);
 }

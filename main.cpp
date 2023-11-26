@@ -16,8 +16,12 @@ int main(void) {
         cout << "File name: " << entry.path() << endl;
         string s = r->readText(entry.path());
         Lexer *l = new Lexer(s);
-        while (l->hasNext()) {
-          std::cout << "word: " << l->nextToken() << std::endl;
+        while (true) {
+          string w = l->nextToken();
+          if (w == "") {
+            break;
+          }
+          std::cout << "word: " << w << std::endl;
           std::cout << "--------------" << std::endl;
         }
         delete l;
