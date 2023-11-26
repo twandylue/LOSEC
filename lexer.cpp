@@ -6,33 +6,43 @@
 using namespace std;
 
 Lexer::Lexer(string content) {
+  this->trimLeft(content);
+  this->trimRight(content);
   this->_content = content;
   this->_index = 0;
-  // BUG: should trimming
   this->_length = content.length();
 }
 
 bool Lexer::hasNext() const { return this->_index < this->_length; }
 
-bool Lexer::isWhitespace(char c) const {
-  return c == ' ' || c == '\t' || c == '\n' || c == '\r';
-}
-
 string Lexer::peek() const {
   size_t i = this->_index;
-  while (i < this->_length && !this->isWhitespace(this->_content[i])) {
+  while (i < this->_length && !isspace(this->_content[i])) {
     i++;
   }
   return this->_content.substr(this->_index, i - this->_index);
 }
 
-string Lexer::next() {
-  while (this->isWhitespace(this->_content[this->_index])) {
-    this->_index++;
+string Lexer::nextToken() {
+  while (this->_index < this->_length &&
+         isspace(this->_content[this->_index])) {
+    this->_index += 1;
   }
-
   string s = this->peek();
   this->_index += s.length();
-  // std::cout << "index: " << this->_index << std::endl;
   return s;
+}
+
+void Lexer::trimRight(string &s) {
+  while (s.length() > 0 && isspace(s[s.length() - 1])) {
+    s.pop_back();
+  }
+}
+
+void Lexer::trimLeft(string &s) {
+  size_t i = 0;
+  while (i < s.length() && isspace(s[i])) {
+    i++;
+  }
+  s = s.substr(i);
 }

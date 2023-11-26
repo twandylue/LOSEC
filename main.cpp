@@ -17,10 +17,11 @@ int main(void) {
         string s = r->readText(entry.path());
         Lexer *l = new Lexer(s);
         while (l->hasNext()) {
-          std::cout << "word: " << l->next() << std::endl;
+          std::cout << "word: " << l->nextToken() << std::endl;
           std::cout << "--------------" << std::endl;
         }
         delete l;
+        l = nullptr;
       }
     }
   } catch (std::invalid_argument &e) {
@@ -29,5 +30,6 @@ int main(void) {
   }
 
   delete r;
+  r = nullptr;
   return 0;
 }

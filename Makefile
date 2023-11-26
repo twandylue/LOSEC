@@ -42,6 +42,6 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
-main.o: main.cpp reader.h
+main.o: main.cpp lexer.h reader.h
 reader.o: reader.cpp reader.h
 lexer.o: lexer.cpp lexer.h
