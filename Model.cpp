@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <cmath>
 #include <string>
+#include <unordered_map>
+#include <utility>
+#include <vector>
 
 using namespace std;
 
@@ -72,7 +75,12 @@ void Model::remove_document(const string &file_path) {
 
 float compute_tf(const string &term, const Doc &doc) {
   size_t m = doc.total_terms;
-  size_t n = doc.tf.at(term);
+  size_t n;
+  if (doc.tf.find(term) == doc.tf.end()) {
+    n = 0;
+  } else {
+    n = doc.tf.at(term);
+  }
 
   return (float)n / (float)(m + 1);
 }
@@ -81,7 +89,7 @@ float compute_idf(const string &term, const Model &model) {
   size_t N = model.get_total_docs();
   size_t n = model.get_docs_with_term(term);
 
-  return log((float)N / (float)(n + 1));
+  return log10((float)N / (float)(n + 1));
 }
 
 vector<pair<string, float>> Model::search(string &query) {
