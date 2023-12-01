@@ -42,8 +42,8 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
-main.o: src/main.cpp src/Model.h src/lexer.h src/reader.h
+main.o: src/main.cpp src/lexer.h src/model.h src/reader.h
 reader.o: src/reader.cpp src/reader.h
 lexer.o: src/lexer.cpp src/lexer.h src/string_functions.h
 string_functions.o: src/string_functions.cpp src/string_functions.h
-Model.o: src/Model.cpp src/Model.h src/lexer.h
+Model.o: src/Model.cpp src/model.h src/lexer.h
