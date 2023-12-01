@@ -1,15 +1,15 @@
 #include "lexer.h"
 #include "string_functions.h"
 
-#include <cctype>
-#include <iostream>
-#include <string>
+#include <cctype>   // isspace, isdigit, isalnum
+#include <iostream> // cout
+#include <string>   // string, substr
 
 using namespace std;
 
-Lexer::Lexer(string content) { this->_content = content; }
+Lexer::Lexer(const string content) { this->_content = content; }
 
-string Lexer::chop(size_t n) {
+string Lexer::chop(const size_t n) {
   string token = this->_content.substr(0, n);
   this->_content = this->_content.substr(n, this->_content.length() - n);
 

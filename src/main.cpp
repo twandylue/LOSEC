@@ -1,5 +1,5 @@
-#include "Model.h"
 #include "lexer.h"
+#include "model.h"
 #include "reader.h"
 
 #include <filesystem>

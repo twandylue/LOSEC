@@ -55,7 +55,8 @@ public:
    * @return a vector of pairs of file paths and scores calculated by tf-idf
    * method
    */
-  std::vector<std::pair<std::string, float>> search(std::string &query) const;
+  std::vector<std::pair<std::string, float>>
+  search(const std::string &query) const;
   /**
    * @brief Returns the total number of documents in the model
    *

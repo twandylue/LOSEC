@@ -9,7 +9,7 @@ using namespace std;
 
 Reader::Reader() {}
 
-string Reader::readText(string filepath) {
+string Reader::readText(const string filepath) {
   ifstream fileContent(filepath);
   if (fileContent.fail()) {
     throw invalid_argument("Error opening file: " + filepath);

@@ -1,4 +1,4 @@
-#include "Model.h"
+#include "model.h"
 #include "lexer.h"
 
 #include <algorithm>
@@ -92,7 +92,7 @@ float compute_idf(const string &term, const Model &model) {
   return log10((float)N / (float)(n + 1));
 }
 
-vector<pair<string, float>> Model::search(string &query) const {
+vector<pair<string, float>> Model::search(const string &query) const {
   vector<string> terms = vector<string>();
   Lexer *l = new Lexer(query);
   while (true) {
