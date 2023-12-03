@@ -20,7 +20,6 @@ struct Doc {
   term_freq tf;
 };
 
-// NOTE: this is a map from term to number of documents that contain that term
 /**
  * @brief A map from term to number of documents that contain that term
  */
