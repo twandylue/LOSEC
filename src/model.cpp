@@ -1,12 +1,12 @@
 #include "model.h"
 #include "lexer.h"
 
-#include <algorithm>
-#include <cmath>
-#include <string>
-#include <unordered_map>
-#include <utility>
-#include <vector>
+#include <algorithm>     // sort
+#include <cmath>         // log10
+#include <string>        // string
+#include <unordered_map> // unordered_map
+#include <utility>       // pair
+#include <vector>        // vector
 
 using namespace std;
 

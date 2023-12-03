@@ -1,1 +1,30 @@
-TODO:
+TITLE:
+Local Search Engine, Andy Lu (An Lu), CSCI200 Section E
+
+PROBLEM DESCRIPTION:
+I will be creating an local search engine for text file. Users are able to input the keywords (queries) about file content and this local search engine will help to find out most related file name based on the score from TF-IDF (Term Frequency Inverse Document Frequency of records) algorithm. This local search engine works without internet.
+
+PROGRAM DOCUMENTATION:
+First, you should put your target documents under `./data/` folder, and then open the local search engine. For now, only `*.txt` is allowed to search in this program. The program would ask you to input your query, which is what you are going to find among your documents. After searching and calculating, this program would give you the rank, score and file path of most related document.
+
+This section includes a brief description of how to run your program (i.e., what the user should type and any other information a user might need to know - such as if it needs to be built with SFML ) and also a brief description that might be used by another programmer to modify/extend your program. For example, there may be some features that you would have included in your program if you had more time. You could include a list of those features, with any thoughts you had about how they should be implemented. Be sure to mention what, if anything, changed from your original proposal and why those changes were necessary.
+
+CLASS DESCRIPTION:
+I have created a `lexer` and `model` classes. `lexer` class is responsible for parsing the file content to tokens, which are a single word here. `model` class is responsible for storing tokens from `lexer` as specific data structures and computing scores according to TF-IDF algorithm. The specific data structures in `model` are `HashMap` which is very convenient for storing key-value pairs. With those classes, This program could easily parse documents and compute scores for them.
+
+What was your custom class you created? What data and functionality was encapsulated? How did creating the class help the struture of your program?
+
+LIST DATA STRUCTURE:
+I use `std::unordered_map` and `vector` as my data structure. I use those data structures (containers) because I need to sotre the tokens (words). Different tokens are stored into `vector` after parsing from documents. Besides, TF-IDF computing result is also sotred into `vector` and then sort by descending order for being shown on the terminal. Dictionay-like data, such as term frequency in the document or term frequency around documents, is sotred into `std::unordered_map`. Those data structures could help me easily to aggregate different data together and thus let me easily handle complex scenario.
+
+Which list data structure did you choose to use? Why was this structure chosen? How did it apply to the task at hand?
+
+FILE I/O:
+This program would read each file under `./data/` folder. This is necessary for my program because it needs to know the content of each file in order to give scores for them.
+
+Where was File I/O incorporated? Why was it necessary to the context of your program?
+
+REFLECTIONS:
+In this final project, I learned how to properly write a lexer, which is a very important concept or pattern in computer science. We can see lexer is adopted in many field in software engineering, such as compiler. Besides, I also learned how to design program and data structures to handle complicated scenario. Encapsulate those logic process into classes help me to extend those classes easily.
+
+Include at least a one-paragraph description of what you learned from this project. It might help to think about what problems you encountered, and what you would do differently if you had to do another project.
