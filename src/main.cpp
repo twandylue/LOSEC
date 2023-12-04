@@ -48,7 +48,7 @@ int main(void) {
   cout << "Searching..." << endl;
 
   vector<pair<string, float>> results = m->search(query, 5);
-  cout << "Results(file path/score): " << endl;
+  cout << "Top 5 Results(file path/score): " << endl;
   for (auto const &[file_path, score] : results) {
     cout << file_path << ": " << score << endl;
   }
