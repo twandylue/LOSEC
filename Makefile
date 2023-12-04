@@ -2,7 +2,7 @@
 # the below example
 
 TARGET = losec
-SRC_FILES = ./src/main.cpp ./src/reader.cpp ./src/lexer.cpp ./src/string_functions.cpp ./src/Model.cpp
+SRC_FILES = ./main.cpp ./reader.cpp ./lexer.cpp ./string_functions.cpp ./Model.cpp
 
 # NO EDITS NEEDED BELOW THIS LINE
 
@@ -42,8 +42,8 @@ depend:
 .PHONY: all clean depend
 
 # DEPENDENCIES
-main.o: src/main.cpp src/lexer.h src/model.h src/reader.h
-reader.o: src/reader.cpp src/reader.h
-lexer.o: src/lexer.cpp src/lexer.h src/string_functions.h
-string_functions.o: src/string_functions.cpp src/string_functions.h
-Model.o: src/Model.cpp src/model.h src/lexer.h
+main.o: main.cpp lexer.h model.h reader.h
+reader.o: reader.cpp reader.h
+lexer.o: lexer.cpp lexer.h string_functions.h
+string_functions.o: string_functions.cpp string_functions.h
+Model.o: Model.cpp model.h lexer.h
