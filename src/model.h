@@ -50,12 +50,13 @@ public:
    * @brief Searches the model for a given query
    *
    * @param query query to search for
+   * @param top_number number of top results to return
    *
    * @return a vector of pairs of file paths and scores calculated by tf-idf
    * method
    */
   std::vector<std::pair<std::string, float>>
-  search(const std::string &query) const;
+  search(const std::string &query, const size_t top_number) const;
   /**
    * @brief Returns the total number of documents in the model
    *

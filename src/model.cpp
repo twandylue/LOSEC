@@ -101,7 +101,8 @@ float compute_idf(const string &term, const Model &model) {
   return log10((float)N / (float)(n + 1));
 }
 
-vector<pair<string, float>> Model::search(const string &query) const {
+vector<pair<string, float>> Model::search(const string &query,
+                                          const size_t top_number) const {
   vector<string> terms = vector<string>();
   Lexer *l = new Lexer(query);
   while (true) {
@@ -134,5 +135,8 @@ vector<pair<string, float>> Model::search(const string &query) const {
          return a.second > b.second;
        });
 
-  return results;
+  return vector<pair<string, float>>(
+      results.begin(), results.begin() + top_number < results.end()
+                           ? results.begin() + top_number
+                           : results.end());
 }

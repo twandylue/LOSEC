@@ -1,3 +1,13 @@
+/* CSCI 200: Final Project
+ *
+ * Author: An Lu(Andy, Lu)
+ * Resources used (Office Hours, Tutoring, Other Students, etc & in what
+ * capacity): None
+ * Description:
+ *     This program is a local search engine. It can index all the `.txt` files
+ * under `./data/` and search the query in the files. This program will return
+ * the top 5 results.
+ */
 #include "lexer.h"
 #include "model.h"
 #include "reader.h"
@@ -37,7 +47,7 @@ int main(void) {
   cout << endl;
   cout << "Searching..." << endl;
 
-  vector<pair<string, float>> results = m->search(query);
+  vector<pair<string, float>> results = m->search(query, 5);
   cout << "Results(file path/score): " << endl;
   for (auto const &[file_path, score] : results) {
     cout << file_path << ": " << score << endl;
