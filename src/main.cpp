@@ -5,7 +5,7 @@
  * capacity): None
  * Description:
  *     This program is a local search engine. It can index all the `.txt` files
- * under `./data/` and search the query in the files. This program will return
+ * under `./data/` and search the query in those files. This program will return
  * the top 5 results.
  */
 #include "lexer.h"
@@ -23,11 +23,11 @@ using namespace std;
 int main(void) {
   Reader *r = new Reader();
   Model *m = new Model();
-  cout << "Hello, welcom to Local Search Engine!" << endl;
+  cout << "Welcome to Local Search Engine!" << endl;
   cout << "Please input your query: ";
   string query;
   cin >> query;
-  cout << "Indexing..." << endl;
+  cout << "Indexing files under ./data/ folder..." << endl;
 
   try {
     const string filepath = "./data";
@@ -48,7 +48,7 @@ int main(void) {
   cout << "Searching..." << endl;
 
   vector<pair<string, float>> results = m->search(query, 5);
-  cout << "Top 5 Results(file path/score): " << endl;
+  cout << "Top 5 Results(file_path/score): " << endl;
   for (auto const &[file_path, score] : results) {
     cout << file_path << ": " << score << endl;
   }
