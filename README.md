@@ -8,9 +8,9 @@ Input your query, LOSEC would help you to find out top 5 related documents under
 
 ```console
 $ make && ./losec
-Hello, welcom to Local Search Engine!
+Welcome to Local Search Engine!
 Please input your query: test2
-Indexing...
+Indexing files under ./data/ folder...
 File name: "./data/test6.txt"
 File name: "./data/test4.txt"
 File name: "./data/test5.txt"
@@ -20,7 +20,7 @@ File name: "./data/test.txt"
 Indexing completed!
 
 Searching...
-Results(file path/score):
+Top 5 Results(file_path/score):
 ./data/test2.txt: 0.0795202
 ./data/test.txt: 0
 ./data/test5.txt: 0
